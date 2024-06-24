@@ -21,7 +21,7 @@ coordinates_of_vertex finding_coordinates(int a, int b, int c){
     return vertices;
 }
 
-void test1(){
+void test1_finding_coordinates(){
     int a = 2;
     int b = 4;
     int c = 1;
@@ -33,7 +33,7 @@ void test1(){
     assert(answer.y == -1);
 }
 
-void test2(){
+void test2_finding_coordinates(){
     int a = -3;
     int b = 6;
     int c = -2;
@@ -45,7 +45,7 @@ void test2(){
     assert(answer.y == 1);
 }
 
-void test3(){
+void test3_finding_coordinates(){
     int a = 1;
     int b = -4;
     int c = 5;
@@ -58,9 +58,9 @@ void test3(){
 }
 
 void tests_finding_coordinates(){
-    test1();
-    test2();
-    test3();
+    test1_finding_coordinates();
+    test2_finding_coordinates();
+    test3_finding_coordinates();
 }
 
 #endif //PRACTICE_2024_FINDING_COORDINATES_H
