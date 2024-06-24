@@ -5,4 +5,5 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(practice_2024 main.c
         tasks/1/finding_coordinates.h
-        tasks/2/feed_for_cows.h)
+        tasks/2/feed_for_cows.h
+        tasks/3/compute_root.h)
