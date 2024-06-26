@@ -7,4 +7,5 @@ add_executable(practice_2024 main.c
         tasks/1/finding_coordinates.h
         tasks/2/feed_for_cows.h
         tasks/3/compute_root.h
-        tasks/4/task4.h)
+        tasks/4/task4.h
+        tasks/5/task5.h)
