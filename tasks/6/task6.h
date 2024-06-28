@@ -36,7 +36,6 @@ void task6(matrix m) {
     int *firstRowValues = (int *)malloc(m.nCols * sizeof(int));
     int firstRowCount = 0;
 
-    // Копируем уникальные значения из первой строки
     for (int i = 0; i < m.nCols; i++) {
         int isUnique = 1;
         for (int j = 0; j < firstRowCount; j++) {
@@ -51,7 +50,6 @@ void task6(matrix m) {
         }
     }
 
-    // Для каждого уникального значения из первой строки проверяем, встречается ли оно во всех строках
     for (int k = 0; k < firstRowCount; k++) {
         int value = firstRowValues[k];
         int isInAllRows = 1;

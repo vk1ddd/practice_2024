@@ -4,6 +4,7 @@
 #include "tasks/4/task4.h"
 #include "tasks/5/task5.h"
 #include "tasks/6/task6.h"
+#include "tasks/7/task7.h"
 
 int main(void) {
     tests_finding_coordinates();
@@ -12,6 +13,7 @@ int main(void) {
     tests_task4();
     tests_task5();
     tests_task6();
+    tests_task7();
 
     return 0;
 }
