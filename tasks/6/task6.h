@@ -32,47 +32,42 @@ matrix createMatrixFromArray(const int *a, int nRows, int nCols) {
     return m;
 }
 
-void task6(matrix m) {
-    int *firstRowValues = (int *)malloc(m.nCols * sizeof(int));
-    int firstRowCount = 0;
-
-    for (int i = 0; i < m.nCols; i++) {
-        int isUnique = 1;
-        for (int j = 0; j < firstRowCount; j++) {
-            if (firstRowValues[j] == m.values[0][i]) {
-                isUnique = 0;
-                break;
-            }
-        }
-        if (isUnique) {
-            firstRowValues[firstRowCount] = m.values[0][i];
-            firstRowCount++;
-        }
+void print_array_without_num(int *array, int size, int num){
+    for(int i = 0; i < size; i++){
+        if (array[i] != num)
+            printf("%d ", array[i]);
     }
-
-    for (int k = 0; k < firstRowCount; k++) {
-        int value = firstRowValues[k];
-        int isInAllRows = 1;
-        for (int i = 1; i < m.nRows; i++) {
-            int foundInRow = 0;
-            for (int j = 0; j < m.nCols; j++) {
-                if (m.values[i][j] == value) {
-                    foundInRow = 1;
-                    break;
-                }
-            }
-            if (!foundInRow) {
-                isInAllRows = 0;
-                break;
-            }
-        }
-        if (isInAllRows) {
-            printf("%d ", value);
-        }
-    }
-    free(firstRowValues);
+    printf("\n");
 }
 
+void check(int *result,const int *row, int size, int sum){
+    int index = 0;
+    for (int i = 0; i < size; i++){
+        for(int j = 0; j < size; j++){
+            if (result[i] == row[j])
+                index = 1;
+        }
+        if(index == 0)
+            result[i] = sum;
+        index = 0;
+    }
+}
+
+void task6(matrix m){
+    int *result = m.values[0];
+    //sum - переменная, которая будет хранить в себе элемент,
+    //которого точно нету в массиве result
+    int sum = 0;
+    for (int i = 0; i < m.nCols; i++){
+        sum += result[i] + 1;
+    }
+
+    for (int i = 0; i < m.nRows; i++){
+        check(result, m.values[i], m.nCols, sum);
+    }
+
+    print_array_without_num(result, m.nCols, sum);
+}
 
 void tests_task6(){
     matrix m = createMatrixFromArray((int[]) {1, 0, 0,
