@@ -70,7 +70,6 @@ void task6(matrix m) {
             printf("%d ", value);
         }
     }
-
     free(firstRowValues);
 }
 

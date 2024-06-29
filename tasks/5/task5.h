@@ -5,13 +5,7 @@
 #ifndef PRACTICE_2024_TASK5_H
 #define PRACTICE_2024_TASK5_H
 
-void print_array(int *array, int size){
-    for(int i = 0; i < size; i++){
-        printf("%d ", array[i]);
-    }
-}
-
-void task5(int *A, int size, int *result){
+void task5(const int *A, int size, int *result){
     int l_index = 0;
     int r_index = size - 1;
     int min_num = A[0];
@@ -42,6 +36,9 @@ void task5(int *A, int size, int *result){
             }
         }
     }
+
+    print_array(result, size);
+    printf("\n");
 }
 
 void test1_task5(){

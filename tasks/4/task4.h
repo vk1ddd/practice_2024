@@ -5,6 +5,12 @@
 #ifndef PRACTICE_2024_TASK4_H
 #define PRACTICE_2024_TASK4_H
 
+void print_array(int *array, int size){
+    for(int i = 0; i < size; i++){
+        printf("%d ", array[i]);
+    }
+}
+
 void task4(const int *A, int size, int *result) {
     int sum = A[0];
 
@@ -15,6 +21,9 @@ void task4(const int *A, int size, int *result) {
             sum += A[j];
         }
     }
+
+    print_array(result, size);
+    printf("\n");
 }
 
 void test1_task4() {
