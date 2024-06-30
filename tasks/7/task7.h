@@ -9,7 +9,7 @@
 #include <math.h>
 
 void task7() {
-    int k, l, m = 0;
+    int k, l, m;
     int d = 0;
     int cnt = 0;
 
@@ -26,7 +26,7 @@ void task7() {
     }
 }
 
-void tests_task7(){
+void tests_task7() {
     task7();
 }
 

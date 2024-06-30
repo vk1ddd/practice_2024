@@ -5,24 +5,24 @@
 #ifndef PRACTICE_2024_TASK5_H
 #define PRACTICE_2024_TASK5_H
 
-void task5(const int *A, int size, int *result){
+void task5(const int *A, int size, int *result) {
     int l_index = 0;
     int r_index = size - 1;
     int min_num = A[0];
 
-    for (int i = 0; i < size; i++){
-        if(A[i] < min_num){
+    for (int i = 0; i < size; i++) {
+        if (A[i] < min_num) {
             min_num = A[i];
         }
     }
 
     int index = 0;
-    for (int i = 0; i < size; i++){
-        if (index == 0){
+    for (int i = 0; i < size; i++) {
+        if (index == 0) {
             result[l_index] = min_num;
             l_index++;
             index = 1;
-        }else{
+        } else {
             result[r_index] = min_num;
             r_index--;
             index = 0;
@@ -30,8 +30,8 @@ void task5(const int *A, int size, int *result){
 
         int last_min = min_num;
         min_num = 999999999;
-        for (int j = 0; j < size; j++){
-            if(A[j] < min_num && A[j] > last_min){
+        for (int j = 0; j < size; j++) {
+            if (A[j] < min_num && A[j] > last_min) {
                 min_num = A[j];
             }
         }
@@ -41,7 +41,7 @@ void task5(const int *A, int size, int *result){
     printf("\n");
 }
 
-void test1_task5(){
+void test1_task5() {
     int size = 5;
     int A[5] = {1, 2, 3, 4, 5};
 
@@ -55,7 +55,7 @@ void test1_task5(){
     assert(result[4] == 2);
 }
 
-void test2_task5(){
+void test2_task5() {
     int size = 8;
     int A[8] = {12, 3, 7, 23, 44, 1, 4, 45};
 
@@ -72,7 +72,7 @@ void test2_task5(){
     assert(result[7] == 3);
 }
 
-void tests_task5(){
+void tests_task5() {
     test1_task5();
     test2_task5();
 }

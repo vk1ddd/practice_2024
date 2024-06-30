@@ -32,63 +32,60 @@ matrix createMatrixFromArray(const int *a, int nRows, int nCols) {
     return m;
 }
 
-void print_array_without_num(int *array, int size, int num){
-    for(int i = 0; i < size; i++){
+void print_array_without_num(int *array, int size, int num) {
+    for (int i = 0; i < size; i++) {
         if (array[i] != num)
             printf("%d ", array[i]);
     }
     printf("\n");
 }
 
-void check(int *result,const int *row, int size, int sum){
+void check(int *result, const int *row, int size, int sum) {
     int index = 0;
-    for (int i = 0; i < size; i++){
-        for(int j = 0; j < size; j++){
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             if (result[i] == row[j])
                 index = 1;
         }
-        if(index == 0)
+        if (index == 0)
             result[i] = sum;
         index = 0;
     }
 }
 
-void task6(matrix m){
+void task6(matrix m) {
     int *result = m.values[0];
     //sum - переменная, которая будет хранить в себе элемент,
     //которого точно нету в массиве result
     int sum = 0;
-    for (int i = 0; i < m.nCols; i++){
+    for (int i = 0; i < m.nCols; i++) {
         sum += result[i] + 1;
     }
 
-    for (int i = 0; i < m.nRows; i++){
+    for (int i = 0; i < m.nRows; i++) {
         check(result, m.values[i], m.nCols, sum);
     }
 
     print_array_without_num(result, m.nCols, sum);
 }
 
-void tests_task6(){
+void tests_task6() {
     matrix m = createMatrixFromArray((int[]) {1, 0, 0,
-                                   0, 1, 0,
-                                   0, 0, 1}, 3, 3);
+                                              0, 1, 0,
+                                              0, 0, 1}, 3, 3);
     task6(m); // Ожидаемый вывод: 0 1
-    printf("\n");
 
 
     matrix m2 = createMatrixFromArray((int[]) {1, 2, 3,
                                                4, 5, 6,
                                                7, 8, 9}, 3, 3);
     task6(m2); // Ожидаемый вывод: пустой вывод
-    printf("\n");
 
 
     matrix m3 = createMatrixFromArray((int[]) {1, 2, 3,
                                                2, 3, 4,
                                                3, 4, 5}, 3, 3);
     task6(m3); // Ожидаемый вывод: 3
-    printf("\n");
 }
 
 #endif //PRACTICE_2024_TASK6_H

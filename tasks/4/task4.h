@@ -5,8 +5,8 @@
 #ifndef PRACTICE_2024_TASK4_H
 #define PRACTICE_2024_TASK4_H
 
-void print_array(int *array, int size){
-    for(int i = 0; i < size; i++){
+void print_array(int *array, int size) {
+    for (int i = 0; i < size; i++) {
         printf("%d ", array[i]);
     }
     printf("\n");
@@ -41,7 +41,7 @@ void test1_task4() {
     assert(result[4] == 10);
 }
 
-void test2_task4(){
+void test2_task4() {
     int size = 4;
     int A[4] = {0, 0, 1, 0};
 
@@ -54,7 +54,7 @@ void test2_task4(){
     assert(result[3] == 1);
 }
 
-void test3_task4(){
+void test3_task4() {
     int size = 8;
     int A[8] = {12, 3, 7, 23, 44, 1, 4, 45};
 
@@ -71,7 +71,7 @@ void test3_task4(){
     assert(result[7] == 94);
 }
 
-void tests_task4(){
+void tests_task4() {
     test1_task4();
     test2_task4();
     test3_task4();
