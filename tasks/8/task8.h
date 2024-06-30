@@ -107,9 +107,9 @@ bool areCollinear(vector *v1, vector *v2) {
     return ratioSet;
 }
 
-void task8(vector *vectors, size_t vectorCount) {
-    for (size_t i = 0; i < vectorCount; i++) {
-        for (size_t j = i + 1; j < vectorCount; j++) {
+void task8(vector *vectors, size_t vector_count) {
+    for (size_t i = 0; i < vector_count; i++) {
+        for (size_t j = i + 1; j < vector_count; j++) {
             if (areOrthogonal(&vectors[i], &vectors[j])) {
                 printf("%zu and %zu orthogonal\n", i, j);
             }
