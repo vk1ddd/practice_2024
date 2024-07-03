@@ -7,6 +7,7 @@
 #include "tasks/7/task7.h"
 #include "tasks/8/task8.h"
 #include "tasks/9/task9.h"
+#include "tasks/10/task10.h"
 
 int main(void) {
     //tests_finding_coordinates();
@@ -18,6 +19,7 @@ int main(void) {
     //tests_task7();
     //tests_task8();
     tests_task9();
+    //tests_task10();
 
     return 0;
 }

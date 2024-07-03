@@ -1,55 +1,89 @@
 //
-// Created by ivanu on 01.07.2024.
+// Created by ivanu on 02.07.2024.
 //
 
 #ifndef PRACTICE_2024_TASK9_H
 #define PRACTICE_2024_TASK9_H
 
-#include <stdio.h>
-#include <string.h>
-
-#define MAX_LINE_LENGTH 1000
-
-//проверка, содержит ли строка хотя бы одно ключевое слово
-int contains_keyword(char *str, char *keywords[], int num_keywords) {
-    int i;
-    for (i = 0; i < num_keywords; ++i) {
-        if (strstr(str, keywords[i]) != NULL) {
-            return 1;
-        }
+void freeMemMatrix(matrix *m) {
+    for (int i = 0; i < m->nRows; ++i) {
+        free(m->values[i]);
     }
-    return 0;
+    free(m->values);
 }
 
-void task9(char *filename, char *keywords[], int num_keywords) {
-    char line[MAX_LINE_LENGTH];
-
-    FILE *file = fopen(filename, "r");
-    if (file == NULL) {
-        perror("Error");
-        return;
-    }
-
-    // чтение файла построчно
-    while (fgets(line, sizeof(line), file)) {
-        if (line[strlen(line) - 1] == '\n') {
-            line[strlen(line) - 1] = '\0';
+void outputMatrix(matrix m) {
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++) {
+            printf("%d ", m.values[i][j]);
         }
-
-        if (contains_keyword(line, keywords, num_keywords)) {
-            printf("%s\n", line);
-        }
+        printf("\n");
     }
-
-    fclose(file);
 }
 
-void tests_task9() {
-    char filename[] = "C:\\Users\\ivanu\\CLionProjects\\practice_2024\\tasks\\9\\books.txt";
-    int num_keywords = 3;
-    char *keywords[] = {"Algorithm", "Artificial", "Network"};
+void print_packed_result(matrix m, int *result){
+    int index = 0;
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = i; j < m.nCols; j++) {
+            printf("%d ", result[index++]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
 
-    task9(filename, keywords, num_keywords);
+void task9(matrix *a) {
+    int n = a->nRows;
+    int* result = (int*) malloc(sizeof(int) * ((n * (n + 1)) / 2));
+    int index = 0;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            int sum = 0;
+            for (int k = 0; k < n; k++) {
+                sum += a->values[i][k] * a->values[j][k];
+            }
+            result[index++] = sum;
+        }
+    }
+
+    print_packed_result(*a, result);
+}
+
+void test1_task9(){
+    matrix m = createMatrixFromArray((int[]) {1, 0, 0,
+                                              0, 1, 0,
+                                              0, 0, 1}, 3, 3);
+
+    task9(&m);
+
+    freeMemMatrix(&m);
+}
+
+void test2_task9(){
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                               4, 5, 6,
+                                               7, 8, 9}, 3, 3);
+
+    task9(&m);
+
+    freeMemMatrix(&m);
+}
+
+void test3_task9(){
+    matrix m= createMatrixFromArray((int[]) {1, 2, 3,
+                                               2, 3, 4,
+                                               3, 4, 5}, 3, 3);
+
+    task9(&m);
+
+    freeMemMatrix(&m);
+}
+
+void tests_task9(){
+    test1_task9();
+    test2_task9();
+    test3_task9();
 }
 
 #endif //PRACTICE_2024_TASK9_H

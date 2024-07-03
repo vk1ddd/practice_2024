@@ -12,4 +12,5 @@ add_executable(practice_2024 main.c
         tasks/6/task6.h
         tasks/7/task7.h
         tasks/8/task8.h
+        tasks/10/task10.h
         tasks/9/task9.h)
