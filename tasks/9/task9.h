@@ -12,42 +12,51 @@ void freeMemMatrix(matrix *m) {
     free(m->values);
 }
 
-void outputMatrix(matrix m) {
+matrix transposeSquareMatrix(matrix *m) {
+    matrix transposed = getMemMatrix(m->nCols, m->nRows);
+
+    for (int i = 0; i < m->nRows; i++) {
+        for (int j = 0; j < m->nCols; j++) {
+            transposed.values[j][i] = m->values[i][j];
+        }
+    }
+
+    return transposed;
+}
+
+matrix multiplyMatrices(matrix *a, matrix *b) {
+    assert(a->nCols == b->nRows);
+
+    matrix result = getMemMatrix(a->nRows, b->nCols);
+
+    for (int i = 0; i < a->nRows; i++) {
+        for (int j = 0; j < b->nCols; j++) {
+            result.values[i][j] = 0;
+            for (int k = 0; k < a->nCols; k++) {
+                result.values[i][j] += a->values[i][k] * b->values[k][j];
+            }
+        }
+    }
+
+    return result;
+}
+
+void print_packed_result(matrix m){
+    int index = m.nCols - 1;
     for (int i = 0; i < m.nRows; i++) {
-        for (int j = 0; j < m.nCols; j++) {
+        for (int j = 0; j < m.nCols - index; j++) {
             printf("%d ", m.values[i][j]);
         }
         printf("\n");
-    }
-}
-
-void print_packed_result(matrix m, int *result){
-    int index = 0;
-    for (int i = 0; i < m.nRows; i++) {
-        for (int j = i; j < m.nCols; j++) {
-            printf("%d ", result[index++]);
-        }
-        printf("\n");
+        index--;
     }
     printf("\n");
 }
 
-void task9(matrix *a) {
-    int n = a->nRows;
-    int* result = (int*) malloc(sizeof(int) * ((n * (n + 1)) / 2));
-    int index = 0;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = i; j < n; j++) {
-            int sum = 0;
-            for (int k = 0; k < n; k++) {
-                sum += a->values[i][k] * a->values[j][k];
-            }
-            result[index++] = sum;
-        }
-    }
-
-    print_packed_result(*a, result);
+void task9(matrix *m) {
+    matrix t_m = transposeSquareMatrix(m);
+    matrix result = multiplyMatrices(m, &t_m);
+    print_packed_result(result);
 }
 
 void test1_task9(){
